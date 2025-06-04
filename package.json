@@ -1,0 +1,15 @@
+{
+  "name": "musio-main",
+  "version": "1.0.0",
+  "description": "![dark mode](/musio-main/new-ui.png)  ![colorfull mode](/musio-main/colorfull-mode.png)",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "sharp": "^0.34.2"
+  }
+}

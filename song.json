@@ -1,0 +1,153 @@
+[
+    {
+        "bollywood" : [
+            {
+                "title" : "Aya Re Toofan",
+                "artist" : "AR rehman",
+                "url" : "./Bollywood/Aya_Toofan.mp3",
+                "mood" : "happy"
+            },
+            {
+                "title" : "Kesariya",
+                "artist" : "Arjith Singh",
+                "url" : "./Bollywood/Kesariya.mp3",
+                "mood" : "romantic"
+            },
+            {
+                "title" : "Chaka Chak",
+                "artist" : "Shreya Goshal",
+                "url" : "./Bollywood/Chaka_Chak.mp3",
+                "mood" : "romantic"
+            },
+            {
+                "title" : "Dil Diya Gallan",
+                "artist" : "Atif Aslam",
+                "url" : "./Bollywood/Dil_Diyan_Gallan.mp3",
+                "mood" : "romantic"
+            },
+            {
+                "title" : "Deva Deva",
+                "artist" : "Arjith Singh",
+                "url" : "./Bollywood/Deva.mp3",
+                "mood" : "happy"
+            },
+            {
+                "title" : "Pyar Hota kai bar hai",
+                "artist" : "Arjith Singh",
+                "url" : "./Bollywood/Pyar_Hota_Kai_Baar.mp3",
+                "mood" : "happy"
+            },
+            {
+                "title" : "Na Bhoola Tujhe",
+                "artist" : "Unknown",
+                "url" : "./Bollywood/Na_Bhoola_Tujhe.mp3",
+                "mood" : "sad"
+            },
+            {
+                "title" : "O Rangrez",
+                "artist" : "Arjith Singh",
+                "url" : "./Bollywood/O_Rangrez.mp3",
+                "mood" : "romantic"
+            },
+            {
+                "title" : "Saaya Tera",
+                "artist" : "Arjith Singh",
+                "url" : "./Bollywood/Saaya_Tera.mp3",
+                "mood" : "happy"
+            }
+        ],
+        "english" : [
+            {
+              "title" : "Perfect",
+                "artist" : "Ed Sheeran",
+                "url" : "./English/Perfect.mp3" ,
+                "mood" : "romantic" 
+            },
+            {
+                "title" : "Blue",
+                "artist" : "Young Kai",
+                "url" : "./English/blue.mp3",
+                "mood" : "sad"
+            },
+            {
+                "title" : "Shape of You",
+                "artist" : "Ed Sheeran",
+                "url" : "./English/Shape_Of_You.mp3",
+                "mood" : "happy"
+            },
+            {
+                "title" : "World's Smallest Violin",
+                "artist" : "Ed Sheeran",
+                "url" : "./English/World's_smallest_violin.mp3",
+                "mood" : "happy"
+            }
+        ],
+        "indie" : [
+            {
+                "title" : "Bing Bing Boo",
+                "artist" : "Yash Raj mukhate",
+                "url" : "./Indie/Bing_boo.mp3",
+                "mood" : "happy"
+            },
+            {
+                "title" : "Bella Ciao Dj Style",
+                "artist" : "DJ HK style",
+                "url" : "./Indie/Bella_Cioa_DJ.mp3",
+                "mood" : "happy"
+            },
+            {
+                "title" : "Husn",
+                "artist" : "Anuv Jain",
+                "url" : "./Indie/Husn.mp3",
+                "mood" : "sad"
+            },
+
+             {
+                "title" : "Lustrous",
+                "artist" : "Unknown",
+                "url" : "./Indie/Lustrous.mp3",
+                "mood" : "happy"
+            },
+
+            
+            {
+                "title" : "Jo Tum Mere Ho",
+                "artist" : "Anuv Jain",
+                "url" : "./Indie/Jo_Tum_Mere_Ho.mp3",
+                "mood" : "sad"
+            },
+            {
+                "title" : "Heer Ranjha",
+                "artist" : "Bhuvan Bam",
+                "url" : "./Indie/Heer_ranjha.mp3",
+                "mood" : "romantic"
+            },
+            {
+                "title" : "Ajnabee",
+                "artist" : "Bhuvan Bam",
+                "url" : "./Indie/Ajnabee.mp3",
+                "mood" : "romantic"
+            },
+            {
+                "title" : "Aj Na",
+                "artist" : "Ritviz",
+                "url" : "./Indie/Aj_Na.mp3",
+                "mood" : "romantic"
+            },
+            {
+                "title" : "Baraat",
+                "artist" : "Ritviz",
+                "url" : "./Indie/Baraat.mp3",
+                "mood" : "happy"
+            },
+            {
+                "title" : "Liggi",
+                "artist" : "Ritviz",
+                "url" : "./Indie/Liggi.mp3",
+                "mood" : "happy"
+            }
+
+        ]
+
+    }
+]

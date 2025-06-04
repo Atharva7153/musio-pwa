@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head class="head">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Musio</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="icon.svg">
+    <style>
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        body {
+            background: linear-gradient(-45deg, #1a1a1a, #2d3436, #2c3e50, #130f40);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        /* Colorful theme styles */
+        body.colorful-theme {
+            background: linear-gradient(-45deg, #ff6b6b, #4ecdc4, #45b7d1, #96c93d);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        .colorful-theme .player-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.3), rgba(255,255,255,0.1));
+        }
+
+        .colorful-theme .album-art {
+            background: linear-gradient(45deg, 
+                rgba(255, 107, 107, 0.8), 
+                rgba(78, 205, 196, 0.8));
+            animation: colorfulAlbumBg 12s ease-in-out infinite;
+        }
+
+        @keyframes colorfulAlbumBg {
+            0% { 
+                background: linear-gradient(45deg, 
+                    rgba(255, 107, 107, 0.8), 
+                    rgba(78, 205, 196, 0.8)
+                ); 
+            }
+            50% { 
+                background: linear-gradient(45deg, 
+                    rgba(69, 183, 209, 0.8), 
+                    rgba(150, 201, 61, 0.8)
+                ); 
+            }
+            100% { 
+                background: linear-gradient(45deg, 
+                    rgba(255, 107, 107, 0.8), 
+                    rgba(78, 205, 196, 0.8)
+                ); 
+            }
+        }
+
+        .colorful-theme .control-btn {
+            background: rgba(255,255,255,0.2);
+            box-shadow: 0 0 15px rgba(123, 31, 162, 0.5);
+        }
+
+        .colorful-theme .control-btn:hover {
+            background: rgba(255,255,255,0.4);
+            box-shadow: 0 0 25px rgba(123, 31, 162, 0.8);
+        }
+
+        .colorful-theme .play-btn {
+            box-shadow: 0 0 20px rgba(255, 64, 129, 0.6);
+        }
+
+        .colorful-theme .play-btn:hover {
+            box-shadow: 0 0 30px rgba(255, 64, 129, 0.9);
+        }
+
+        .colorful-theme .playlist_container .btn {
+            animation: colorfulButtonGlow 3s infinite;
+        }
+
+        @keyframes colorfulButtonGlow {
+            0% {
+                box-shadow: 0 0 15px rgba(33, 150, 243, 0.6);
+                border-color: rgba(33, 150, 243, 0.8);
+            }
+            33% {
+                box-shadow: 0 0 15px rgba(0, 150, 136, 0.6);
+                border-color: rgba(0, 150, 136, 0.8);
+            }
+            66% {
+                box-shadow: 0 0 15px rgba(156, 39, 176, 0.6);
+                border-color: rgba(156, 39, 176, 0.8);
+            }
+            100% {
+                box-shadow: 0 0 15px rgba(33, 150, 243, 0.6);
+                border-color: rgba(33, 150, 243, 0.8);
+            }
+        }
+
+        .colorful-theme .btn-outline-light:hover {
+            background: rgba(255,255,255,0.25);
+            box-shadow: 0 0 25px rgba(233, 30, 99, 0.8);
+        }
+
+        .colorful-theme .playlist_container .btn.active {
+            background: rgba(255,255,255,0.25);
+            animation: colorfulActiveGlow 2s infinite;
+        }
+
+        @keyframes colorfulActiveGlow {
+            0% {
+                box-shadow: 0 0 20px rgba(255, 87, 34, 0.7);
+                border-color: rgba(255, 87, 34, 0.9);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(255, 87, 34, 0.9);
+                border-color: rgba(255, 87, 34, 1);
+            }
+            100% {
+                box-shadow: 0 0 20px rgba(255, 87, 34, 0.7);
+                border-color: rgba(255, 87, 34, 0.9);
+            }
+        }
+
+        .colorful-theme .btn-outline-light {
+            border-color: rgba(255,255,255,0.5);
+        }
+
+        .colorful-theme .author-name {
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255,255,255,0.8);
+        }
+
+        @keyframes albumBg {
+            0% {
+                background: linear-gradient(45deg, #1a1a1a 0%, #2a2a2a 100%);
+            }
+            50% {
+                background: linear-gradient(45deg, #2a2a2a 0%, #1a1a1a 100%);
+            }
+            100% {
+                background: linear-gradient(45deg, #1a1a1a 0%, #2a2a2a 100%);
+            }
+        }
+        .player-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            width: 100%;
+            max-width: 500px;
+            border-radius: 24px;
+            padding: 2rem;
+            margin-top: 6rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .player-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+
+        .colorful-theme .player-card:hover {
+            box-shadow: 0 15px 30px rgba(255,107,107,0.2);
+        }
+
+        /* Add this media query for mobile devices */
+        @media (max-width: 768px) {
+            .player-card {
+                background: transparent !important; /* Override colorful theme */
+                backdrop-filter: none;
+                border: none;
+                margin-top: 2rem;
+                transform: none !important;
+                box-shadow: none !important;
+            }
+
+            .player-card:hover {
+                transform: none !important;
+                box-shadow: none !important;
+            }
+
+            .colorful-theme .player-card {
+                background: transparent !important;
+            }
+
+            .colorful-theme .player-card:hover {
+                box-shadow: none !important;
+            }
+        }
+
+        .album-art {
+            width: 100%;
+            aspect-ratio: 1;
+            background: #1a1a1a;
+            animation: albumBg 8s ease-in-out infinite;
+            border-radius: 16px;
+            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .album-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            min-height: 100%;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            text-align: center;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .album-overlay * {
+            color: white !important;
+        }
+        @keyframes textColorShift {
+            0%, 100% { 
+                color: rgba(255,255,255,0.95);
+                text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+            }
+            50% { 
+                color: rgba(255,255,255,1);
+                text-shadow: 0 0 15px rgba(255,255,255,0.3), 0 2px 8px rgba(0,0,0,0.4);
+            }
+        }
+        .album-overlay .info {
+            font-size: 0.75rem !important;  /* reduced from 0.85rem */
+            line-height: 1.2;               /* reduced from 1.4 */
+            margin-bottom: 0.2rem !important; /* reduced from 0.25rem */
+            width: 100%;
+            display: block;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+            animation: textColorShift 2s ease-in-out infinite;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            letter-spacing: 0.4px;          /* reduced from 0.5px */
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+        @keyframes happySongSync {
+            0% {
+                color: #ffff00;
+                text-shadow: 0 0 15px #ffff00, 0 0 25px #ffff00;
+            }
+            33% {
+                color: #ff9933;
+                text-shadow: 0 0 15px #ff9933, 0 0 25px #ff9933;
+            }
+            66% {
+                color: #66ff00;
+                text-shadow: 0 0 15px #66ff00, 0 0 25px #66ff00;
+            }
+            100% {
+                color: #ffff00;
+                text-shadow: 0 0 15px #ffff00, 0 0 25px #ffff00;
+            }
+        }
+
+        @keyframes sadSongSync {
+            0% {
+                color: #4d4dff;
+                text-shadow: 0 0 15px #4d4dff, 0 0 25px #4d4dff;
+            }
+            33% {
+                color: #9966cc;
+                text-shadow: 0 0 15px #9966cc, 0 0 25px #9966cc;
+            }
+            66% {
+                color: #6666ff;
+                text-shadow: 0 0 15px #6666ff, 0 0 25px #6666ff;
+            }
+            100% {
+                color: #4d4dff;
+                text-shadow: 0 0 15px #4d4dff, 0 0 25px #4d4dff;
+            }
+        }
+
+        @keyframes romanticSongSync {
+            0% {
+                color: #ff3366;
+                text-shadow: 0 0 15px #ff3366, 0 0 25px #ff3366;
+            }
+            33% {
+                color: #ff66b3;
+                text-shadow: 0 0 15px #ff66b3, 0 0 25px #ff66b3;
+            }
+            66% {
+                color: #ff99cc;
+                text-shadow: 0 0 15px #ff99cc, 0 0 25px #ff99cc;
+            }
+            100% {
+                color: #ff3366;
+                text-shadow: 0 0 15px #ff3366, 0 0 25px #ff3366;
+            }
+        }
+
+        .album-overlay .info .deco {
+            display: inline-block;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        .album-overlay .info .deco.happy {
+            animation: happySongSync 4s linear infinite;
+        }
+
+        .album-overlay .info .deco.sad {
+            animation: sadSongSync 4s linear infinite;
+        }
+
+        .album-overlay .info .deco.romantic {
+            animation: romanticSongSync 4s linear infinite;
+        }
+
+        /* Add underline style for decoration */
+        .album-overlay .info .deco u {
+            text-decoration-color: currentColor;
+            text-underline-offset: 4px;
+        }
+
+        @keyframes progressMove {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+        .progress-bar {
+            width: 100%;
+            accent-color: #fff;
+            background: linear-gradient(90deg, 
+                rgba(255,255,255,0.1) 0%, 
+                rgba(255,255,255,0.5) 50%, 
+                rgba(255,255,255,0.1) 100%);
+            background-size: 200% 100%;
+            animation: progressMove 2s linear infinite;
+        }
+
+        /* Add colorful progress bar styles */
+        .colorful-theme .progress-bar {
+            background: linear-gradient(90deg, 
+                #FF6B6B 0%, 
+                #4ECDC4 50%, 
+                #45B7D1 100%);
+            background-size: 200% 100%;
+            animation: progressMoveColorful 3s linear infinite;
+        }
+
+        @keyframes progressMoveColorful {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        /* Add colorful volume slider styles */
+        .colorful-theme .volume-slider {
+            accent-color: #FF6B6B;
+        }
+
+        .colorful-theme .volume-control:hover .volume-slider {
+            background: linear-gradient(90deg, 
+                #FF6B6B 0%, 
+                #4ECDC4 50%, 
+                #45B7D1 100%);
+            border-radius: 8px;
+        }
+
+        .colorful-theme .volume-control .fa-volume-high {
+            color: #FF6B6B !important;
+            text-shadow: 0 0 10px rgba(255, 107, 107, 0.6);
+        }
+
+        @keyframes controlGlow {
+            0%, 100% { box-shadow: 0 0 5px rgba(255,255,255,0.3); }
+            50% { box-shadow: 0 0 15px rgba(255,255,255,0.5); }
+        }
+        .control-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+        .control-btn:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+            animation: controlGlow 2s infinite;
+        }
+        .control-btn:hover i {
+            transform: scale(1.2);
+            transition: transform 0.3s ease;
+        }
+        .play-btn {
+            width: 56px;
+            height: 56px;
+            animation: controlGlow 2s infinite;
+        }
+        .volume-slider {
+            width: 80px;
+            transition: width 0.3s ease;
+        }
+        .playlist_container {
+            position: fixed;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+        }
+        @keyframes buttonGlow {
+            0%, 100% { box-shadow: 0 0 5px rgba(255,255,255,0.3); }
+            50% { box-shadow: 0 0 20px rgba(255,255,255,0.6); }
+        }
+        @keyframes continuousGlow {
+            0% {
+                box-shadow: 0 0 5px rgba(255,255,255,0.3);
+                background: rgba(255,255,255,0.1);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(255,255,255,0.5);
+                background: rgba(255,255,255,0.2);
+            }
+            100% {
+                box-shadow: 0 0 5px rgba(255,255,255,0.3);
+                background: rgba(255,255,255,0.1);
+            }
+        }
+        .playlist_container .btn {
+            font-size: 0.9rem;
+            padding: 0.6rem 1.2rem;
+            border-width: 2px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(5px);
+            animation: continuousGlow 2s infinite;
+        }
+        .playlist_container .btn:hover {
+            transform: translateY(-2px);
+            animation: none;
+            background: rgba(255,255,255,0.25);
+            box-shadow: 0 0 25px rgba(255,255,255,0.6);
+        }
+        .playlist_container .btn.active {
+            background: rgba(255,255,255,0.25);
+            animation: buttonGlow 2s infinite;
+        }
+        .playlist_container .btn i {
+            margin-right: 0.5rem;
+        }
+        .time-display i {
+            font-size: 0.75rem;
+            margin-right: 0.3rem;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .volume-control {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .volume-control:hover .volume-slider {
+            width: 120px;
+        }
+        .volume-control .fa-volume-high {
+            animation: pulse 2s infinite;
+        }
+        @keyframes authorGlow {
+            0%, 100% { 
+                text-shadow: 0 0 5px rgba(255,255,255,0.3);
+                color: rgba(255,255,255,0.8);
+            }
+            50% { 
+                text-shadow: 0 0 15px rgba(255,255,255,0.6), 0 0 25px rgba(255,255,255,0.4);
+                color: #fff;
+            }
+        }
+        .author-name {
+            animation: authorGlow 3s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        /* Update card styles */
+        .update-card {
+            position: fixed;
+            left: -100%;
+            bottom: 20px;
+            transform: none;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            width: 90%;
+            max-width: 600px; /* Increased to accommodate images */
+            color: white;
+            transition: left 0.3s ease-in-out, transform 0.2s ease;
+            z-index: 1000;
+            cursor: pointer;
+        }
+
+        .update-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .update-card.show {
+            left: 20px;
+        }
+
+        .update-card h5 {
+            color: #fff;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 10px;
+        }
+
+        .update {
+            cursor: pointer;
+            transition: color 0.2s ease, text-shadow 0.2s ease;
+        }
+
+        .update:hover {
+            color: white !important;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .update-comparison {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+            justify-content: space-between;
+        }
+
+        .update-comparison > div {
+            width: 48%;
+            text-align: center;
+        }
+
+        .update-comparison img {
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+            margin-bottom: 5px;
+            cursor: zoom-in;
+        }
+
+        .comparison-label {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+            margin-top: 5px;
+        }
+
+        /* Lightbox styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90vh;
+            border-radius: 12px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .lightbox.active img {
+            transform: scale(1);
+        }
+
+        /* Floating music icons */
+        @keyframes float {
+            0% { 
+                transform: translate(var(--startX), var(--startY)) rotate(0deg) scale(0.5); 
+                opacity: 0;
+                filter: blur(2px) brightness(1);
+            }
+            20% { 
+                opacity: 0.8;
+                filter: blur(0) brightness(1.5);
+            }
+            80% {
+                opacity: 0.8;
+                filter: blur(0) brightness(1.5);
+            }
+            100% { 
+                transform: translate(var(--endX), var(--endY)) rotate(360deg) scale(1.2);
+                opacity: 0;
+                filter: blur(3px) brightness(1);
+            }
+        }
+
+        @keyframes fall {
+            0% { 
+                transform: translate(var(--clickX), var(--clickY)) rotate(0deg); 
+                opacity: 1;
+            }
+            100% { 
+                transform: translate(var(--clickX), calc(100vh + 50px)) rotate(720deg); 
+                opacity: 0;
+            }
+        }
+
+        .floating-icons {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .floating-icons i {
+            position: fixed;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 20px;
+            text-shadow: 0 0 10px rgba(255,255,255,0.5),
+                         0 0 20px rgba(255,255,255,0.3),
+                         0 0 30px rgba(255,255,255,0.2);
+            animation: float 8s ease-in-out forwards;
+            --startX: 0px;
+            --startY: 0px;
+            --endX: 0px;
+            --endY: 0px;
+            cursor: pointer;
+            pointer-events: auto;
+        }
+
+        .floating-icons i.falling {
+            animation: fall 1s ease-in forwards;
+        }
+
+        /* Songs Menu Styles */
+        .songs-menu {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            transition: right 0.3s ease;
+            z-index: 2000;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .songs-menu.active {
+            right: 0;
+        }
+
+        .songs-menu .close-menu {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: white;
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .songs-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 40px;
+        }
+
+        .songs-list li {
+            padding: 10px 15px;
+            color: white;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            margin-bottom: 5px;
+        }
+
+        .songs-list li:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .songs-list li .song-title {
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+
+        .songs-list li .song-mood {
+            font-size: 0.8rem;
+            padding: 2px 8px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .songs-list li .song-mood.happy {
+            color: #ffff00;
+            text-shadow: 0 0 10px rgba(255, 255, 0, 0.5);
+        }
+
+        .songs-list li .song-mood.sad {
+            color: #4d4dff;
+            text-shadow: 0 0 10px rgba(77, 77, 255, 0.5);
+        }
+
+        .songs-list li .song-mood.romantic {
+            color: #ff3366;
+            text-shadow: 0 0 10px rgba(255, 51, 102, 0.5);
+        }
+
+        .hamburger-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+
+        .hamburger-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        .colorful-theme .songs-menu {
+            background: linear-gradient(135deg, rgba(255,107,107,0.9), rgba(78,205,196,0.9));
+        }
+
+        .colorful-theme .songs-list li:hover {
+            background: rgba(255, 255, 255, 0.2);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Add this media query for mobile responsiveness */
+        @media (max-width: 768px) {
+            .hamburger-btn {
+                top: auto;
+                bottom: 20px;
+                right: 20px;
+                background: rgba(0, 0, 0, 0.6);
+                backdrop-filter: blur(10px);
+                padding: 12px;
+                z-index: 2001;
+            }
+
+            .hamburger-btn:hover {
+                background: rgba(0, 0, 0, 0.8);
+            }
+
+            .playlist_container {
+                position: fixed;
+                top: 20px;
+                width: 90%;
+                max-width: 400px;
+            }
+
+            .playlist_container .btn-group {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+            }
+
+            .playlist_container .btn {
+                flex: 1;
+                white-space: nowrap;
+                font-size: 0.8rem;
+                padding: 0.5rem;
+            }
+        }
+
+        /* PWA Install button styles */
+        #installButton {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            color: white;
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+            display: none;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        #installButton:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        .colorful-theme #installButton {
+            background: rgba(255, 107, 107, 0.3);
+            box-shadow: 0 0 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .colorful-theme #installButton:hover {
+            background: rgba(255, 107, 107, 0.4);
+            box-shadow: 0 0 20px rgba(255, 107, 107, 0.4);
+        }
+    </style>
+</head>
+
+<body class="bg-dark min-vh-100 d-flex flex-column justify-content-center align-items-center py-4">
+    <div class="floating-icons"></div>
+    <div class="playlist_container">
+        <div class="btn-group">
+            <button class="btn btn-outline-light btn-sm btn1 English">
+                <i class="fas fa-music"></i>English
+            </button>
+            <button class="btn btn-outline-light btn-sm btn1 indie">
+                <i class="fas fa-guitar"></i>Indie
+            </button>
+            <button class="btn btn-outline-light btn-sm btn1 bollywood">
+                <i class="fas fa-record-vinyl"></i>Bollywood
+            </button>
+        </div>
+    </div>
+
+    <button class="hamburger-btn">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="songs-menu">
+        <button class="close-menu">
+            <i class="fas fa-times"></i>
+        </button>
+        <ul class="songs-list">
+            <!-- Songs will be populated here -->
+        </ul>
+    </div>
+
+    <div class="player-card">
+        <div class="album-art">
+            <div class="album-overlay">
+                <div class="function-btn">
+                    <div class="info text-white fw-bold text-center">
+                        <!-- Dynamic content will be injected here inside spans -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="progress-wrapper mb-3">
+            <input type="range" class="progress-bar" value="0">
+            <div class="d-flex justify-content-between mt-1">
+                <small class="text-white-50 currTime">
+                    <i class="fas fa-clock"></i>00:00
+                </small>
+                <small class="text-white-50">
+                    <i class="fas fa-hourglass-end"></i>03:45
+                </small>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div class="control-btn btn2 prev">
+                <i class="fas fa-backward-step text-white"></i>
+            </div>
+            <div class="control-btn play-btn btn2 play">
+                <i class="fas fa-play text-white fs-4"></i>
+            </div>
+            <div class="control-btn btn2 next">
+                <i class="fas fa-forward-step text-white"></i>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center gap-2 volume-control">
+                <i class="fas fa-volume-high text-white-50 fs-5"></i>
+                <input type="range" class="form-range volume-slider volumeBar" id="volumeBar">
+            </div>
+            <button class="btn btn-sm btn-outline-light toggle">
+                <i class="fas fa-moon me-1 theme-icon"></i><span class="theme-text">Dark</span>
+            </button>
+        </div>
+
+        <div class="mt-3 text-end">
+            <small class="text-white-50 update">v1.15</small>
+        </div>
+    </div>
+
+    <div class="update-card">
+        <button class="close-btn">
+            <i class="fas fa-times"></i>
+        </button>
+        <h5>v1.15 :- Update of Rebranding</h5>
+        
+        <ul class="mb-0">
+            <li>Added animations</li>
+            <li>Massive UI overhall</li>
+            <li>updated color themes</li>
+            <li>added menu option to see list of songs</li>
+            <li>Enhanced UI responsiveness</li>
+            <li>Added more songs</li>
+        </ul>
+    </div>
+
+    <!-- Add update toast notification -->
+    <div id="updateToast" style="display: none; position: fixed; bottom: 20px; left: 20px; background: rgba(0, 0, 0, 0.9); color: white; padding: 1rem; border-radius: 8px; z-index: 1000; backdrop-filter: blur(10px);">
+        <p style="margin: 0 0 10px 0;">A new version is available!</p>
+        <button onclick="window.location.reload()" style="background: #4CAF50; border: none; color: white; padding: 8px 16px; border-radius: 4px; cursor: pointer;">Update Now</button>
+    </div>
+
+    <!-- Add lightbox container -->
+    <div class="lightbox" onclick="this.classList.remove('active')">
+        <img src="" alt="Fullscreen Image">
+    </div>
+
+    <button id="installButton" style="display: none;">
+        <i class="fas fa-download"></i> Install App
+    </button>
+
+    <footer class="text-white-50 mt-4">
+        <small>Created by <b class="author-name">Atharva Sharma</b></small>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="app.js"></script>
+    <script>
+        function showLightbox(imgSrc) {
+            const lightbox = document.querySelector('.lightbox');
+            const lightboxImg = lightbox.querySelector('img');
+            lightboxImg.src = imgSrc;
+            lightbox.classList.add('active');
+        }
+
+        function createFloatingIcon() {
+            const icons = ['fa-music', 'fa-guitar', 'fa-headphones', 'fa-record-vinyl', 'fa-compact-disc'];
+            const icon = document.createElement('i');
+            icon.className = `fas ${icons[Math.floor(Math.random() * icons.length)]}`;
+            
+            // Random start and end positions
+            const startX = Math.random() * window.innerWidth;
+            const startY = Math.random() * window.innerHeight;
+            const endX = startX + (Math.random() * 400 - 200);
+            const endY = startY - Math.random() * 400;
+            
+            icon.style.setProperty('--startX', `${startX}px`);
+            icon.style.setProperty('--startY', `${startY}px`);
+            icon.style.setProperty('--endX', `${endX}px`);
+            icon.style.setProperty('--endY', `${endY}px`);
+            
+            // Add click handler
+            icon.addEventListener('click', function(e) {
+                const rect = this.getBoundingClientRect();
+                this.style.setProperty('--clickX', `${rect.left}px`);
+                this.style.setProperty('--clickY', `${rect.top}px`);
+                this.classList.add('falling');
+                
+                setTimeout(() => this.remove(), 1000);
+            });
+            
+            document.querySelector('.floating-icons').appendChild(icon);
+            
+            // Remove the icon after animation completes if not clicked
+            setTimeout(() => {
+                if (icon.parentNode && !icon.classList.contains('falling')) {
+                    icon.remove();
+                }
+            }, 8000);
+        }
+
+        // Create new icons more frequently (every 1 second instead of 2)
+        setInterval(createFloatingIcon, 1000);
+        
+        // Create more initial icons (20 instead of 10)
+        for(let i = 0; i < 20; i++) {
+            setTimeout(createFloatingIcon, i * 500);
+        }
+
+        // Add theme toggle functionality
+        document.querySelector('.toggle').addEventListener('click', function() {
+            const body = document.body;
+            const icon = this.querySelector('.theme-icon');
+            const text = this.querySelector('.theme-text');
+            
+            if (body.classList.contains('colorful-theme')) {
+                body.classList.remove('colorful-theme');
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                text.textContent = 'Dark';
+            } else {
+                body.classList.add('colorful-theme');
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                text.textContent = 'Colorful';
+            }
+        });
+
+        // Add this at the end of your existing script
+        const hamburgerBtn = document.querySelector('.hamburger-btn');
+        const songsMenu = document.querySelector('.songs-menu');
+        const closeMenu = document.querySelector('.close-menu');
+        const songsList = document.querySelector('.songs-list');
+        const playlistButtons = document.querySelectorAll('.btn1');
+
+        hamburgerBtn.addEventListener('click', () => {
+            songsMenu.classList.add('active');
+            // Hide hamburger button when menu opens
+            hamburgerBtn.style.display = 'none';
+        });
+
+        closeMenu.addEventListener('click', () => {
+            songsMenu.classList.remove('active');
+            // Show hamburger button when menu closes
+            hamburgerBtn.style.display = 'block';
+        });
+
+        playlistButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Clear previous songs
+                songsList.innerHTML = '';
+                
+                // Here you'll need to update this part to match your actual songs data
+                // This is just an example structure
+                let songs;
+                if (button.classList.contains('English')) {
+                    songs = ['English Song 1', 'English Song 2', 'English Song 3'];
+                } else if (button.classList.contains('indie')) {
+                    songs = ['Indie Song 1', 'Indie Song 2', 'Indie Song 3'];
+                } else if (button.classList.contains('bollywood')) {
+                    songs = ['Bollywood Song 1', 'Bollywood Song 2', 'Bollywood Song 3'];
+                }
+
+                // Populate songs in the list without showing menu
+                songs.forEach(song => {
+                    const li = document.createElement('li');
+                    li.textContent = song;
+                    li.addEventListener('click', () => {
+                        // Handle song selection here
+                        console.log('Selected song:', song);
+                        songsMenu.classList.remove('active');
+                    });
+                    songsList.appendChild(li);
+                });
+            });
+        });
+
+        // Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful');
+                        
+                        // Check for updates
+                        registration.addEventListener('updatefound', () => {
+                            const newWorker = registration.installing;
+                            newWorker.addEventListener('statechange', () => {
+                                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                    document.getElementById('updateToast').style.display = 'block';
+                                }
+                            });
+                        });
+                    })
+                    .catch(err => {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
+
+        // PWA Install prompt
+        let deferredPrompt;
+        const installButton = document.getElementById('installButton');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installButton.style.display = 'block';
+        });
+
+        installButton.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                if (outcome === 'accepted') {
+                    console.log('User accepted the install prompt');
+                    installButton.style.display = 'none';
+                }
+                deferredPrompt = null;
+            }
+        });
+
+        // Hide button if already installed
+        window.addEventListener('appinstalled', () => {
+            installButton.style.display = 'none';
+            deferredPrompt = null;
+        });
+
+        // Add this to your existing script
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.addEventListener('message', (event) => {
+                if (event.data.type === 'UPDATE_AVAILABLE') {
+                    document.getElementById('updateToast').style.display = 'block';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

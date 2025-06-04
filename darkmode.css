@@ -1,0 +1,118 @@
+*{
+  background-color: #141124 ;
+  color: white;
+}
+.btn1{
+    background-color: #0091ff;
+    color: white;
+    font-weight: bold;
+    height: 6vh;
+    width: 10vw;
+    font-size: 200%;
+    border: 1px solid black;
+}
+.btn1:hover{
+    transition: all 0.2 ease;
+    transform: scale(0.9);
+    background-color: #2b5270;
+}
+.btn2{
+   
+    height: 5vh;
+}
+.btn2:hover{
+    transition: all 0.2 ease;
+    transform: scale(0.9);
+}
+
+.update {
+    font-style: italic;
+    color: red;
+}
+.deco {
+    font-weight: bold;
+    color: #19e35c; 
+}
+.deco:hover{
+    font-style: italic;
+    color: red;
+}
+
+.info{
+    margin: 0;
+    padding-top: 0;
+    background-color: #19e35c;
+    font-style: italic;
+    font-weight: normal;
+    width: 60vh;
+    height: 30vh;
+    gap: 2%;
+    border: 2px solid black;
+    border-radius: 10%;
+}
+.info *{
+    background-color: transparent;
+}
+.info.happy{
+    animation: happyColors 30s infinite 
+}
+@keyframes happyColors {
+    0%{
+        background-color: #FF006D;
+    }
+    50%{
+        background-color: #8F00FF;
+    }
+    100%{
+        background-color: #FF7D00;
+    }
+}
+.info.sad{
+    animation: sadColors 30s infinite 
+}
+@keyframes sadColors {
+    0%{
+        background-color: 	#2a3b90;
+    }
+    50%{
+        background-color: #0c0d49;
+    }
+    100%{
+        background-color: #183a23;
+    }
+}
+.info.romantic{
+    animation: RomanticColors 30s infinite 
+}
+@keyframes RomanticColors {
+    0%{
+        background-color: #ff009e;
+    }
+    50%{
+        background-color: #fea0ff;
+    }
+    100%{
+        background-color: #ff819f;
+    }
+}
+
+.toggle{
+    font-weight: bold;
+    color: black;
+    background-color: white;
+}
+.progress-bar{
+    width: 50vh;
+}
+
+@media (max-width : 1400px){
+    .btn1{
+        font-size: 125%;
+        width: 112px;
+        height: 43px;   
+    }
+    .info{
+        width: 85vw;
+        height: 34vh;
+    }
+}
